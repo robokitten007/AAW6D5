@@ -1,3 +1,5 @@
+require 'action_view'
+
 class Cat < ApplicationRecord
 
     COLORS = %w(black mix orange gray neon)
@@ -6,4 +8,9 @@ class Cat < ApplicationRecord
     validates :name, presence: true
     validates :sex, presence: true, inclusion:{in ['M', 'F']} 
     validates :color, presence: true, inclusion: COLORS
+
+    def age
+        time_ago_in_words(birth_date)
+    end
+
 end 
